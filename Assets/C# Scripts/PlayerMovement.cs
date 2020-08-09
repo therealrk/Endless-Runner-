@@ -15,5 +15,22 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = new Vector3(value, transform.position.y, transform.position.z);
+
+        if (Input.GetButtonDown("Right"))
+        {
+            if (value == 3)
+            {
+                return;
+            }
+            value += 3;
+        }
+        if (Input.GetButtonDown("Left"))
+        {
+            if (value == -3)
+            {
+                return;
+            }
+            value -= 3;
+        }
     }
 }
