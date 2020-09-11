@@ -4,53 +4,62 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager GM;
     private CharacterController controller;
     private Vector3 direction;
     //will be replace the get key to touch
-    public float forwardSpeed = 5f;
-    public float jumpForce = 10f;
+    public float forwardSpeed;
+    public float jumpForce;
     public float Gravity = -20;
+    private GameObject GameManager;
     [Range(-3, 3)] public float value;
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        GameManager = GameObject.FindGameObjectWithTag("GameController");
+        GameManager.GetComponent<GameManager>().playerMovement = this;
+        controller = gameObject.GetComponent<CharacterController>();
+        forwardSpeed = 5f;
+        jumpForce = 10f;
     }
 
     private void Update()
     {
+        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
         direction.z = forwardSpeed;
-        direction.y += Gravity * Time.deltaTime;
     }
 
     void FixedUpdate()
     {
         controller.Move(direction * Time.fixedDeltaTime);
         transform.position = new Vector3(value, transform.position.y, transform.position.z);
-
-        if (Input.GetButtonDown("Right"))
-        {
-            if (value == 3)
-            {
-                return;
-            }
-            value += 3;
-        }
-        if (Input.GetButtonDown("Left"))
-        {
-            if (value == -3)
-            {
-                return;
-            }
-            value -= 3;
-        }
-
+                
         if (controller.isGrounded)
         {
+            if (Input.GetButtonDown("Right"))
+            {
+                if (value == 3)
+                {
+                    return;
+                }
+                value += 3;
+            }
+            if (Input.GetButtonDown("Left"))
+            {
+                if (value == -3)
+                {
+                    return;
+                }
+                value -= 3;
+            }
             if (Input.GetButtonDown("Up"))
             {
                 Jump();
             }
+        }
+        else
+        {
+            direction.y += Gravity * Time.deltaTime;
         }
     }
 
