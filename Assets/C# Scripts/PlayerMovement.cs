@@ -31,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+      
+        }
         controller.Move(direction * Time.fixedDeltaTime);
         transform.position = new Vector3(value, transform.position.y, transform.position.z);
                 

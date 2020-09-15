@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Video;
@@ -8,7 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public int totalCoin;
-    public GameObject gun;
+    public GameObject currGun;
+    private GameObject selectGun;
     public float score;
     public int distance;
     private GameObject Player;
@@ -45,22 +47,81 @@ public class GameManager : MonoBehaviour
     public void OnClicked(Button button)
     {
         Debug.Log(button.name);
-    }
-
-    void ChangeGun()
-    {
-        
-    }
-
-    void BuyGun()
-    {
-        bool bought=false;
-        if (!bought)
+        if(button.GetComponentInChildren<Text>().text!="Bought"|| button.GetComponentInChildren<Text>().text != "Current Gun")
         {
-            int price = 0;
+            if (button.name == "Pistol")
+            {
+                BuyGun(button,"pistol");
+            }
+            else if (button.name == "SMG")
+            {
+                BuyGun(button,"smg");
+            }
+            else if (button.name == "Rifle")
+            {
+                BuyGun(button,"rifle");
+            }
+            else if (button.name == "Shotgun")
+            {
+                BuyGun(button, "shotgun");
+            }
+            else if (button.name == "")
+            {
+                BuyGun(button,"");
+            }
+        }
+        else
+        {
+            ChangeGun(button);
+        }
+    }
+
+    void ChangeGun(Button button)
+    {
+        if (button.GetComponentInChildren<Text>().text == "Bought")
+        {
+            if (button.name == "pistol")
+            {
+            }
+        }       
+    }
+
+    void BuyGun(Button button,string gun)
+    {
+        if (gun == "pistol")
+        {
+            int price = 100;
+            button.GetComponentInChildren<Text>().text = price.ToString();
             if (price < totalCoin)
             {
-                
+                button.GetComponentInChildren<Text>().text = "Bought";
+            }
+        }
+        else if(gun == "smg")
+        {
+            int price = 100;
+            button.GetComponentInChildren<Text>().text = price.ToString();
+            if (price < totalCoin)
+            {
+                button.GetComponentInChildren<Text>().text = "Bought";
+            }
+        }
+        else if (gun == "rifle")
+        {
+            int price = 100;
+            button.GetComponentInChildren<Text>().text = price.ToString();
+            if (price < totalCoin)
+            {
+                button.GetComponentInChildren<Text>().text = "Bought";
+            }
+        }
+        else if (gun == "shotgun")
+        {
+            int price = 100;
+            button.GetComponentInChildren<Text>().text = price.ToString();
+            if (price < totalCoin)
+            {
+                button.GetComponentInChildren<Text>().text = "Bought";
             }
         }
     }
