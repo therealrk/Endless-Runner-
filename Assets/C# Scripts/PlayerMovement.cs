@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     public float forwardSpeed;
     public float jumpForce;
     public float Gravity = -20;
-    private GameObject GameManager;
     [Range(-3, 3)] public float value;
     private Vector2 startTouch, swipeDelta;
     public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
@@ -20,8 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        GameManager = GameObject.FindGameObjectWithTag("GameController");
-        GameManager.GetComponent<GameManager>().playerMovement = this;
+        GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        GM.playerMovement = this;
         controller = gameObject.GetComponent<CharacterController>();
         forwardSpeed = 5f;
         jumpForce = 10f;
@@ -39,13 +38,13 @@ public class PlayerMovement : MonoBehaviour
                 isDraging = true;
                 startTouch = Input.touches[0].position;
                 Debug.Log("TAP");
-            }           
-        }
-        else if(Input.touches[0].phase==TouchPhase.Ended||Input.touches[0].phase==TouchPhase.Canceled)
-        {
-            isDraging = false;
-            Reset();
-        }
+            }
+            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
+            {
+                isDraging = false;
+                Reset();
+            }
+        }        
 
         if (swipeDelta.magnitude > 125)
         {
