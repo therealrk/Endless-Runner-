@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public PlayerMovement playerMovement;
+    public PlayerUI playerUI;
+    public PlayerData PD;
     public int totalCoin;
     public GameObject currGun;
     private List<GameObject> Guns = new List<GameObject>();
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
     private GameObject Player;
     public Button button;
     public string touchobject;
+    public enum GamePhase { Mainmenu,InGame,}
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +28,12 @@ public class GameManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
-        GameObject Holster = GameObject.FindGameObjectWithTag("Gun");
-        foreach (GameObject gun in Holster.transform)
-        {
-            Guns.Add(gun);
-        }
+        Player.GetComponent<PlayerData>().GM = this;
+        //GameObject Holster = GameObject.FindGameObjectWithTag("Gun");
+        //foreach (GameObject gun in Holster.transform)
+        //{
+        //    Guns.Add(gun);
+        //}
     }
 
     // Update is called once per frame
