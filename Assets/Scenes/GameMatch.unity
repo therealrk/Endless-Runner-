@@ -2434,7 +2434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 0}
   totalCoin: 0
-  gun: {fileID: 0}
+  currGun: {fileID: 0}
   score: 0
   distance: 0
   button: {fileID: 0}
@@ -2899,7 +2899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1778883124
 RectTransform:
   m_ObjectHideFlags: 0
