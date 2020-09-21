@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     public PlayerMovement playerMovement;
     public int totalCoin;
     public GameObject currGun;
-    private GameObject selectGun;
+    private List<GameObject> Guns = new List<GameObject>();
+    private enum Gun {Pistol,SMG,Rifle,Shotgun}
+    private Gun gun;
     public float score;
     public int distance;
     private GameObject Player;
@@ -23,6 +25,11 @@ public class GameManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
+        GameObject Holster = GameObject.FindGameObjectWithTag("Gun");
+        foreach (GameObject gun in Holster.transform)
+        {
+            Guns.Add(gun);
+        }
     }
 
     // Update is called once per frame
@@ -51,44 +58,88 @@ public class GameManager : MonoBehaviour
         {
             if (button.name == "Pistol")
             {
-                BuyGun(button,"pistol");
+                BuyGun(button,Gun.Pistol);
             }
             else if (button.name == "SMG")
             {
-                BuyGun(button,"smg");
+                BuyGun(button,Gun.SMG);
             }
             else if (button.name == "Rifle")
             {
-                BuyGun(button,"rifle");
+                BuyGun(button, Gun.Rifle);
             }
             else if (button.name == "Shotgun")
             {
-                BuyGun(button, "shotgun");
-            }
-            else if (button.name == "")
-            {
-                BuyGun(button,"");
+                BuyGun(button, Gun.Shotgun);
             }
         }
         else
         {
-            ChangeGun(button);
+            if (button.name == "Pistol")
+            {
+                ChangeGun(button, Gun.Pistol);
+            }
+            else if (button.name == "SMG")
+            {
+                ChangeGun(button, Gun.SMG);
+            }
+            else if (button.name == "Rifle")
+            {
+                ChangeGun(button, Gun.Rifle);
+            }
+            else if (button.name == "Shotgun")
+            {
+                ChangeGun(button, Gun.Shotgun);
+            }
         }
     }
 
-    void ChangeGun(Button button)
+    void ChangeGun(Button button,Gun gun)
     {
         if (button.GetComponentInChildren<Text>().text == "Bought")
         {
-            if (button.name == "pistol")
+            if (gun == Gun.Pistol)
             {
+                foreach(GameObject weapon in Guns)
+                {
+                    weapon.SetActive(false);
+                }
+                currGun = Guns[0];
+                Guns[0].SetActive(true);
+            }
+            else if (gun == Gun.SMG)
+            {
+                foreach (GameObject weapon in Guns)
+                {
+                    weapon.SetActive(false);
+                }
+                currGun = Guns[1];
+                Guns[1].SetActive(true);
+            }
+            else if (gun == Gun.Rifle)
+            {
+                foreach (GameObject weapon in Guns)
+                {
+                    weapon.SetActive(false);
+                }
+                currGun = Guns[2];
+                Guns[2].SetActive(true);
+            }
+            else if (gun == Gun.Shotgun)
+            {
+                foreach (GameObject weapon in Guns)
+                {
+                    weapon.SetActive(false);
+                }
+                currGun = Guns[3];
+                Guns[3].SetActive(true);
             }
         }       
     }
 
-    void BuyGun(Button button,string gun)
+    void BuyGun(Button button,Gun gun)
     {
-        if (gun == "pistol")
+        if (gun == Gun.Pistol)
         {
             int price = 100;
             button.GetComponentInChildren<Text>().text = price.ToString();
@@ -97,7 +148,7 @@ public class GameManager : MonoBehaviour
                 button.GetComponentInChildren<Text>().text = "Bought";
             }
         }
-        else if(gun == "smg")
+        else if(gun == Gun.SMG)
         {
             int price = 100;
             button.GetComponentInChildren<Text>().text = price.ToString();
@@ -106,7 +157,7 @@ public class GameManager : MonoBehaviour
                 button.GetComponentInChildren<Text>().text = "Bought";
             }
         }
-        else if (gun == "rifle")
+        else if (gun == Gun.Rifle)
         {
             int price = 100;
             button.GetComponentInChildren<Text>().text = price.ToString();
@@ -115,7 +166,7 @@ public class GameManager : MonoBehaviour
                 button.GetComponentInChildren<Text>().text = "Bought";
             }
         }
-        else if (gun == "shotgun")
+        else if (gun == Gun.Shotgun)
         {
             int price = 100;
             button.GetComponentInChildren<Text>().text = price.ToString();
