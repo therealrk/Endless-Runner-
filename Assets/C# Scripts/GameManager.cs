@@ -28,6 +28,12 @@ public class GameManager : MonoBehaviour
     public GameObject losePanel;
     public GameObject ingamePanel;
 
+    //UI stuffs
+    public Image HealthBar; 
+    private float health;
+    public float startHealth = 3;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +46,10 @@ public class GameManager : MonoBehaviour
         //{
         //    Guns.Add(gun);
         //}
+
+
+        health = startHealth;
+        HealthBar.fillAmount = health / startHealth;
     }
 
     // Update is called once per frame
@@ -50,7 +60,17 @@ public class GameManager : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             Debug.Log(touch.position);
         }
-        GameOver();        
+        GameOver();
+
+
+        HealthBar.fillAmount = health / startHealth;
+        //test hp
+        /*
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            health--;
+        }
+        */
     }
 
     public void GameOver()
@@ -194,6 +214,7 @@ public class GameManager : MonoBehaviour
     }
 
 
+    //UI functions
     public void StartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -203,4 +224,7 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+
+
 }
