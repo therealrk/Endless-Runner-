@@ -13,14 +13,15 @@ public class GameManager : MonoBehaviour
     public int totalCoin;
     public GameObject currGun;
     private List<GameObject> Guns = new List<GameObject>();
-    private enum Gun {Pistol,SMG,Rifle,Shotgun}
-    private Gun gun;
+    public enum Gun {Pistol,SMG,Rifle,Shotgun}
+    public Gun gun;
     public float score;
     public int distance;
     private GameObject Player;
     public Button button;
     public string touchobject;
-    public enum GamePhase { Mainmenu,InGame,}
+    public enum GamePhase { Mainmenu,InGame, GameOver}
+    public GamePhase gamePhase;
     public PlayerMachanic PM;
     public GameObject losePanel;
     public GameObject ingamePanel;
@@ -45,28 +46,23 @@ public class GameManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            Debug.Log(touch);
+            Debug.Log(touch.position);
         }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        GameOver();
-        //RaycastHit hit = new RaycastHit();
-        //if (Input.GetMouseButton(0))
-        //{
-        //    if (Physics.Raycast(ray, out hit))
-        //    {
-        //        Debug.Log(hit.collider.name);
-        //    }
-        //}
+        GameOver();        
     }
 
     public void GameOver()
     {
-        if (PM.GameOver == true)
+        if(gamePhase == GamePhase.InGame)
         {
-            ingamePanel.SetActive(false);
-            losePanel.SetActive(true);
-            Debug.Log("GameOver!");
-        }
+            if (playerUI.GameOver == true)
+            {
+                ingamePanel.SetActive(false);
+                losePanel.SetActive(true);
+                gamePhase = GamePhase.GameOver;
+                Debug.Log("GameOver!");
+            }
+        }        
     }
 
     public void OnClicked(Button button)

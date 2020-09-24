@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour
     public float zSpawn = 0;
     public float tileLength = 30;
     public int numberOfTiles = 5;
-    private List<GameObject> activeTiles = new List<GameObject>();
+    [SerializeField] private List<GameObject> activeTiles = new List<GameObject>();
     public Transform playerTranform;
     // Start is called before the first frame update
     void Start()

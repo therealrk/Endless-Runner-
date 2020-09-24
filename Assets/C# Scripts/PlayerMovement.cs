@@ -20,8 +20,9 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-        GM.playerMovement = this;
+        GM.GetComponent<PlayerUI>().PMT = this;
         controller = gameObject.GetComponent<CharacterController>();
+        GM.playerMovement = this;
         forwardSpeed = 5f;
         jumpForce = 10f;
     }
