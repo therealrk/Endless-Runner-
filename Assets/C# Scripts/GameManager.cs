@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public Button button;
     public string touchobject;
     public enum GamePhase { Mainmenu,InGame,}
+    public PlayerMachanic PM;
+    public GameObject losePanel;
+    public GameObject ingamePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +31,7 @@ public class GameManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
-        Player.GetComponent<PlayerData>().GM = this;
+        //Player.GetComponent<PlayerData>().GM = this;
         //GameObject Holster = GameObject.FindGameObjectWithTag("Gun");
         //foreach (GameObject gun in Holster.transform)
         //{
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
             Debug.Log(touch);
         }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        GameOver();
         //RaycastHit hit = new RaycastHit();
         //if (Input.GetMouseButton(0))
         //{
@@ -53,6 +57,16 @@ public class GameManager : MonoBehaviour
         //        Debug.Log(hit.collider.name);
         //    }
         //}
+    }
+
+    public void GameOver()
+    {
+        if (PM.GameOver == true)
+        {
+            ingamePanel.SetActive(false);
+            losePanel.SetActive(true);
+            Debug.Log("GameOver!");
+        }
     }
 
     public void OnClicked(Button button)
