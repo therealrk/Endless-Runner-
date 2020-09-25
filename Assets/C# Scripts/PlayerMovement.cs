@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     //will be replace the get key to touch
     public float forwardSpeed;
     public float jumpForce;
-    public float Gravity = -20;
+    public float Gravity = -100;
+    [SerializeField] private bool isGrounded = true;
     [Range(-3, 3)] public float value;
     private Vector2 startTouch, swipeDelta;
     public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
@@ -19,11 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();        
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         GM.playerMovement = this;
         gameObject.GetComponent<PlayerUI>().PMT = this;
-        forwardSpeed = 5f;
+        forwardSpeed = 10f;
         jumpForce = 10f;
     }
 
@@ -80,14 +80,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        
-        controller.Move(direction * Time.fixedDeltaTime);
-        transform.position = new Vector3(value, transform.position.y, transform.position.z);
-                
-        if (controller.isGrounded)
+    {       
+        transform.position = new Vector3(value, transform.position.y, transform.position.z);                
+        if (isGrounded)
         {
-            if (PlayerMovement.swipeLeft)
+            if (swipeLeft)
             {
                 if (value == 3)
                 {
@@ -95,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 value += 3;
             }
-            if (PlayerMovement.swipeRight)
+            if (swipeRight)
             {
                 if (value == -3)
                 {
@@ -103,11 +100,11 @@ public class PlayerMovement : MonoBehaviour
                 }
                 value -= 3;
             }
-            if (PlayerMovement.swipeUp)
+            if (swipeUp)
             {
                 Jump();
             }
-            if (PlayerMovement.swipeDown)
+            if (swipeDown)
             {
                 //Slide();
             }
@@ -127,5 +124,13 @@ public class PlayerMovement : MonoBehaviour
     {
         startTouch = swipeDelta = Vector2.zero;
         isDraging = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
     }
 }
