@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
-        //Player.GetComponent<PlayerData>().GM = this;
+        Player.GetComponent<PlayerData>().GM = this;
         //GameObject Holster = GameObject.FindGameObjectWithTag("Gun");
         //foreach (GameObject gun in Holster.transform)
         //{
