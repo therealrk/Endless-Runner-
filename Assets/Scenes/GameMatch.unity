@@ -2384,7 +2384,8 @@ MonoBehaviour:
   tilePrefabs:
   - {fileID: 8568242297512013432, guid: d829602b4a2d189449d15a43ac9ffc29, type: 3}
   - {fileID: 6879166827736711161, guid: 4d55218dd13158945a27529df73139c7, type: 3}
-  secondTilePrefabs: []
+  secondTilePrefabs:
+  - {fileID: 5549757304044829529, guid: 7572ebb50c6e2e444941b6d3b270e270, type: 3}
   zSpawn: 0
   tileLength: 38.85
   numberOfTiles: 5
