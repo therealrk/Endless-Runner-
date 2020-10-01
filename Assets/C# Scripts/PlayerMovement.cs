@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         GM.playerMovement = this;
         gameObject.GetComponent<PlayerUI>().PMT = this;
-        forwardSpeed = 10f;
+        forwardSpeed = 5f;
         jumpForce = 10f;
     }
 
@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (controller.isGrounded)
         {
-            direction.y = 0;
+            direction.y = 1;
             if (swipeLeft)
             {
                 if (value == 3)
