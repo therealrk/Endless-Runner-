@@ -10,22 +10,22 @@ public class NavigationHandler : MonoBehaviour
     public GameObject creditPanel;
     public GameManager GM;
 
-    private void ToggleStartGame()
+    public void ToggleStartGame()
     {
-
+        SceneManager.LoadSceneAsync("GameMatch");
     }
 
-    private void ToggleSettingPanel()
+    public void ToggleSettingPanel()
     {
         settingPanel.SetActive(true);
     }
 
-    private void ToggleCreditPanel()
+    public void ToggleCreditPanel()
     {
         creditPanel.SetActive(true);
     }
 
-    private void ToggleRestartGame()
+    public void ToggleRestartGame()
     {
         GM.RestartGame();
     }
@@ -33,6 +33,11 @@ public class NavigationHandler : MonoBehaviour
     public void ToggleExitToMainMenu()
     {
         SceneManager.LoadSceneAsync("MainMenu");
+    }
+
+    public void ToggleExitGame()
+    {
+        Application.Quit();
     }
 
 }

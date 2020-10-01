@@ -208,6 +208,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void CountdownStartGame()
+    {
+
+    }
 
     //UI functions
     public void StartGame()

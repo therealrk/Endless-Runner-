@@ -33,19 +33,19 @@ public class TileManager : MonoBehaviour
 
     public void SpawnTile(int tileIndex)
     {
-        if (scoreSystem.scoreAmount < 50)
+        if (scoreSystem.scoreAmount < 5)
         {
             GameObject go = Instantiate(tilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
             activeTiles.Add(go);
             zSpawn += tileLength;
             Debug.Log("HongKongPrefab");
         }
-        if (scoreSystem.scoreAmount > 50)
+        if (scoreSystem.scoreAmount > 5)
         {
             GameObject go_02 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
             activeTiles.Add(go_02);
             zSpawn += tileLength;
-            Debug.Log("CyberpunkPrefab");
+            Debug.Log("ChinaPrefab");
         }
 
     }
