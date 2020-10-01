@@ -138,6 +138,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: hongkonglv1
       objectReference: {fileID: 0}
+    - target: {fileID: 6205836051830876107, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.767
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051830876107, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.12055
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051830876107, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.113
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051830876107, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4587114
+      objectReference: {fileID: 0}
     - target: {fileID: 6205836052393223846, guid: 988157ecf0ad05449943ed0d26ce47df,
         type: 3}
       propertyPath: m_TagString
