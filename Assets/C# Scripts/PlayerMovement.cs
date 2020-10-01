@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float playerSpeed =2f;
     public float Gravity = -9.18f;
     [Range(-3, 3)] public float value;
-    private Vector2 startTouch, swipeDelta;
+    private Vector2 startTouch,endTouch, swipeDelta;
     public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
     [SerializeField] private bool groundedPlayer = false;
@@ -59,9 +59,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
             {
+                endTouch = Input.touches[0].position;
                 isDraging = false;
+                swipeDelta = endTouch - startTouch;
                 Reset();
             }
+
         }        
 
         if (swipeDelta.magnitude > 125)
