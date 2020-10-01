@@ -8,6 +8,7 @@ public class NavigationHandler : MonoBehaviour
 {
     public GameObject settingPanel;
     public GameObject creditPanel;
+    public GameManager GM;
 
     private void ToggleStartGame()
     {
@@ -22,6 +23,16 @@ public class NavigationHandler : MonoBehaviour
     private void ToggleCreditPanel()
     {
         creditPanel.SetActive(true);
+    }
+
+    private void ToggleRestartGame()
+    {
+        GM.RestartGame();
+    }
+
+    public void ToggleExitToMainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
     }
 
 }

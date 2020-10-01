@@ -225,6 +225,11 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void RestartGame()
+    {
+        //When lose the game player can press restart button to restart the game 
+    }
+
 
 
 }
