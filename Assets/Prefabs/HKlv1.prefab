@@ -38,6 +38,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8568242297512013439}
     m_Modifications:
+    - target: {fileID: 6205836051074731537, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.5114577
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051074731537, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.057019994
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051074731537, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.0000000038409613
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051074731537, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.0000000019204813
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051074731537, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.016110163
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836051074731567, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 6205836051257736481, guid: 988157ecf0ad05449943ed0d26ce47df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -107,6 +137,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hongkonglv1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6205836052393223846, guid: 988157ecf0ad05449943ed0d26ce47df,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 988157ecf0ad05449943ed0d26ce47df, type: 3}
