@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 startTouch, swipeDelta;
     public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
-    private bool groundedPlayer;
+    [SerializeField] private bool groundedPlayer = false;
 
     void Start()
     {
@@ -31,28 +31,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(value, transform.position.y, transform.position.z);
-        Debug.Log(value);
-        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
-        direction.z = forwardSpeed;
-        groundedPlayer = controller.isGrounded;
+        //transform.position = new Vector3(value, transform.position.y, transform.position.z);
 
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
-        }
-
-        direction.y += Gravity * Time.deltaTime;
         controller.Move(direction * Time.deltaTime);
 
         if (Input.touches.Length > 0)
         {
             if (Input.touches[0].phase == TouchPhase.Began)
             {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit = new RaycastHit();
+                if (Input.GetMouseButton(0))
+                {
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        if (hit.transform.gameObject.tag == "Enemy")
+                        {
+                            Destroy(hit.transform.gameObject);
+                        }
+                    }
+                }
                 tap = true;
                 isDraging = true;
                 startTouch = Input.touches[0].position;
+                Jump();
                 Debug.Log("TAP");
             }
             else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
@@ -74,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
                     if (x < 0)
                     {
                         swipeLeft = true;
+                        Debug.Log("left");
                     }
                     else
                     {
@@ -92,10 +95,6 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-                direction.y += Gravity * Time.deltaTime;
-            }
 
             Reset();
         }
@@ -103,7 +102,13 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        //transform.position = new Vector3(value, transform.position.y, transform.position.z);
+        transform.position = new Vector3(value, transform.position.y, transform.position.z);
+        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
+        direction.z = forwardSpeed;
+        direction.y += Gravity * Time.deltaTime;
+
+
+
         //groundedPlayer = controller.isGrounded;
         //if (groundedPlayer && direction.y < 0)
         //{
@@ -124,7 +129,6 @@ public class PlayerMovement : MonoBehaviour
         //    direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
         //}
 
-        //direction.y += Gravity * Time.deltaTime;
         //controller.Move(direction * Time.deltaTime);
 
         if (controller.isGrounded)
@@ -166,7 +170,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        direction.y = jumpForce;
+        // Changes the height position of the player..
+        if (groundedPlayer)
+        {
+            direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
+            groundedPlayer = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            groundedPlayer = true;
+        }
     }
 
     private void Reset()

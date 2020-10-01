@@ -55,11 +55,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-            Debug.Log(touch.position);
-        }
         GameOver();
 
 
