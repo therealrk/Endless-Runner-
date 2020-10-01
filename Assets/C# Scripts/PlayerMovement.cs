@@ -31,8 +31,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        transform.position = new Vector3(value, transform.position.y, transform.position.z);
+        Debug.Log(value);
         Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
         direction.z = forwardSpeed;
+        groundedPlayer = controller.isGrounded;
+
+        // Changes the height position of the player..
+        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        {
+            direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
+        }
+
+        direction.y += Gravity * Time.deltaTime;
+        controller.Move(direction * Time.deltaTime);
+
         if (Input.touches.Length > 0)
         {
             if (Input.touches[0].phase == TouchPhase.Began)
@@ -54,27 +67,34 @@ public class PlayerMovement : MonoBehaviour
             //Which direction?
             float x = swipeDelta.x;
             float y = swipeDelta.y;
-            if (Mathf.Abs(x) > Mathf.Abs(y))
+            if (controller.isGrounded)
             {
-                if (x < 0)
+                if (Mathf.Abs(x) > Mathf.Abs(y))
                 {
-                    swipeLeft = true;
+                    if (x < 0)
+                    {
+                        swipeLeft = true;
+                    }
+                    else
+                    {
+                        swipeRight = true;
+                    }
                 }
                 else
                 {
-                    swipeRight = true;
+                    if (y < 0)
+                    {
+                        swipeDown = true;
+                    }
+                    else
+                    {
+                        swipeUp = true;
+                    }
                 }
             }
             else
             {
-                if (y < 0)
-                {
-                    swipeDown = true;
-                }
-                else
-                {
-                    swipeUp = true;
-                }
+                direction.y += Gravity * Time.deltaTime;
             }
 
             Reset();
@@ -82,59 +102,59 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate()
-    {        
+    {
         //transform.position = new Vector3(value, transform.position.y, transform.position.z);
-        groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && direction.y < 0)
-        {
-            direction.y = 0f;
-        }
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
-
-        if (move != Vector3.zero)
-        {
-            gameObject.transform.forward = move;
-        }
-
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
-        {
-            direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
-        }
-
-        direction.y += Gravity * Time.deltaTime;
-        controller.Move(direction * Time.deltaTime);
-
-        //if (controller.isGrounded)
+        //groundedPlayer = controller.isGrounded;
+        //if (groundedPlayer && direction.y < 0)
         //{
-        //    direction.y = 0;
-        //    if (swipeLeft)
-        //    {
-        //        if (value == 3)
-        //        {
-        //            return;
-        //        }
-        //        value += 3;
-        //    }
-        //    if (swipeRight)
-        //    {
-        //        if (value == -3)
-        //        {
-        //            return;
-        //        }
-        //        value -= 3;
-        //    }
-        //    if (swipeUp)
-        //    {
-        //        Jump();
-        //    }
-        //    if (swipeDown)
-        //    {
-        //        //Slide();
-        //    }
+        //    direction.y = 0f;
         //}
+
+        //Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        //controller.Move(move * Time.deltaTime * playerSpeed);
+
+        //if (move != Vector3.zero)
+        //{
+        //    gameObject.transform.forward = move;
+        //}
+
+        //// Changes the height position of the player..
+        //if (Input.GetButtonDown("Jump") && groundedPlayer)
+        //{
+        //    direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
+        //}
+
+        //direction.y += Gravity * Time.deltaTime;
+        //controller.Move(direction * Time.deltaTime);
+
+        if (controller.isGrounded)
+        {
+            direction.y = 0;
+            if (swipeLeft)
+            {
+                if (value == 3)
+                {
+                    return;
+                }
+                value += 3;
+            }
+            if (swipeRight)
+            {
+                if (value == -3)
+                {
+                    return;
+                }
+                value -= 3;
+            }
+            if (swipeUp)
+            {
+                Jump();
+            }
+            if (swipeDown)
+            {
+                //Slide();
+            }
+        }
         //else
         //{
         //    direction.y += Gravity * Time.deltaTime;
