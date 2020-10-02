@@ -2388,7 +2388,7 @@ MonoBehaviour:
   - {fileID: 5549757304044829529, guid: 7572ebb50c6e2e444941b6d3b270e270, type: 3}
   zSpawn: 0
   tileLength: 38.85
-  numberOfTiles: 5
+  numberOfTiles: 3
   scoreSystem: {fileID: 901319757}
   activeTiles: []
   playerTranform: {fileID: 543450653621005666}
@@ -3386,6 +3386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tester
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731663774869166795, guid: 6ee751feccf6f1846b71d477ece6cdfa,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2966104599685769089, guid: 6ee751feccf6f1846b71d477ece6cdfa,
         type: 3}
