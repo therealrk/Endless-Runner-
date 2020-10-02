@@ -40,7 +40,7 @@ public class TileManager : MonoBehaviour
             zSpawn += tileLength;
             Debug.Log("HongKongPrefab");
         }
-        if (scoreSystem.scoreAmount > 5)
+        if (scoreSystem.scoreAmount >= 5)
         {
             GameObject go_02 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
             activeTiles.Add(go_02);

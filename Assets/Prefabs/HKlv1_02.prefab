@@ -4102,6 +4102,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: taxi (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4927747233282312729, guid: 7b448b4f26559fd4c8e1a85ec5172dc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b448b4f26559fd4c8e1a85ec5172dc8, type: 3}
 --- !u!4 &899238113044973664 stripped
@@ -4191,6 +4196,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: taxi (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927747233282312729, guid: 7b448b4f26559fd4c8e1a85ec5172dc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b448b4f26559fd4c8e1a85ec5172dc8, type: 3}
@@ -4282,6 +4292,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ElecBus
       objectReference: {fileID: 0}
+    - target: {fileID: 5716655482461915603, guid: 5dda74c91d7f42c41a0e2d7ca78bea91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dda74c91d7f42c41a0e2d7ca78bea91, type: 3}
 --- !u!4 &8265293414416518644 stripped
@@ -4371,6 +4386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: taxi (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4927747233282312729, guid: 7b448b4f26559fd4c8e1a85ec5172dc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b448b4f26559fd4c8e1a85ec5172dc8, type: 3}
@@ -4462,6 +4482,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: taxi
       objectReference: {fileID: 0}
+    - target: {fileID: 4927747233282312729, guid: 7b448b4f26559fd4c8e1a85ec5172dc8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b448b4f26559fd4c8e1a85ec5172dc8, type: 3}
 --- !u!4 &8563752495554110392 stripped
@@ -4551,6 +4576,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ElecBus (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716655482461915603, guid: 5dda74c91d7f42c41a0e2d7ca78bea91,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5dda74c91d7f42c41a0e2d7ca78bea91, type: 3}
