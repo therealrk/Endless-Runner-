@@ -13,11 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     private float playerSpeed =2f;
     public float Gravity = -9.18f;
-    [Range(-3, 3)] public float value;
+    [Range(-1.28f, 4.72f)] public float value;
     private Vector2 startTouch,endTouch, swipeDelta;
     public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
     [SerializeField] private bool groundedPlayer = false;
+    public GameObject Player;
 
     void Start()
     {
@@ -27,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<PlayerUI>().PMT = this;
         forwardSpeed = 5f;
         jumpForce = 10f;
+        value = 1.72f;
+        
     }
 
     private void Update()
@@ -139,19 +142,19 @@ public class PlayerMovement : MonoBehaviour
             direction.y = 1;
             if (swipeLeft)
             {
-                if (value == 3)
+                if (value == 4.72f)
                 {
                     return;
                 }
-                value += 3;
+                value += 4.72f;
             }
             if (swipeRight)
             {
-                if (value == -3)
+                if (value == -1.28f)
                 {
                     return;
                 }
-                value -= 3;
+                value -= 1.28f;
             }
             if (swipeUp)
             {
