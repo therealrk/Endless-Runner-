@@ -33,14 +33,21 @@ public class TileManager : MonoBehaviour
 
     public void SpawnTile(int tileIndex)
     {
-        if (scoreSystem.scoreAmount < 5)
+        if (scoreSystem.distance > 1*scoreSystem.distanceindent*scoreSystem.distances)
         {
             GameObject go = Instantiate(tilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
             activeTiles.Add(go);
             zSpawn += tileLength;
             Debug.Log("HongKongPrefab");
         }
-        if (scoreSystem.scoreAmount >= 5)
+        if (scoreSystem.distance >= 2* scoreSystem.distanceindent * scoreSystem.distances)
+        {
+            GameObject go_02 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
+            activeTiles.Add(go_02);
+            zSpawn += tileLength;
+            Debug.Log("ChinaPrefab");
+        }
+        if (scoreSystem.distance >= 3 * scoreSystem.distanceindent * scoreSystem.distances)
         {
             GameObject go_02 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
             activeTiles.Add(go_02);

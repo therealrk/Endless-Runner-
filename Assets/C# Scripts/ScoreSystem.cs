@@ -8,21 +8,31 @@ public class ScoreSystem : MonoBehaviour
     public Text scoreCurrent;
     public Text scoreFinal;
     public float scoreAmount;
+    public float distance;
+    public int distances;
     public float pointIncreasedPerSec;
+    public int distanceindent;
     public PlayerUI PUI;
 
     void Start()
     {
         scoreAmount = 0f;
         pointIncreasedPerSec = 10f;
+        distances = 10;
+        distanceindent = 1;
     }
 
     void Update()
     {
         if (PUI.GameOver == false)
         {
-            scoreCurrent.text = (int)scoreAmount + "KM";
+            scoreCurrent.text = (int)scoreAmount + "P";
             scoreAmount += pointIncreasedPerSec * Time.deltaTime;
+            distance += pointIncreasedPerSec / 100;
+            if(distance>= 4 * distanceindent * distances)
+            {
+                distanceindent += 1;
+            }
         }
         if (PUI.GameOver == true)
         {
