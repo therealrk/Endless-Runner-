@@ -23,19 +23,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit = new RaycastHit();
-        if (Input.GetMouseButton(0))
-        {
-            if (Physics.Raycast(ray, out hit))
-            {
-                Debug.Log(hit.collider.name);
-                if (hit.transform.gameObject.tag == "Enemy")
-                {
-                    Destroy(hit.transform.gameObject);
-                }
-            }
-        }
+
     }
 
     public void WeaponFire()

@@ -38,55 +38,73 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(direction * Time.deltaTime);
 
-        if (Input.touches.Length > 0)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.touches[0].phase == TouchPhase.Began)
+            startTouch = Input.mousePosition;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
+            if (Input.GetMouseButton(0))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit = new RaycastHit();
-                if (Input.GetMouseButton(0))
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if (Physics.Raycast(ray, out hit))
+                    if (hit.transform.gameObject.tag == "Enemy")
                     {
-                        if (hit.transform.gameObject.tag == "Enemy")
-                        {
-                            Destroy(hit.transform.gameObject);
-                        }
+                        Destroy(hit.transform.gameObject);
                     }
                 }
-                tap = true;
-                isDraging = true;
-                startTouch = Input.touches[0].position;
-                Jump();
-                Debug.Log("TAP");
             }
-            else if (Input.touches[0].phase == TouchPhase.Ended || Input.touches[0].phase == TouchPhase.Canceled)
-            {
-                endTouch = Input.touches[0].position;
-                isDraging = false;
-                swipeDelta = endTouch - startTouch;
-                Reset();
-            }
+            tap = true;
+            isDraging = true;
+            Debug.Log("TAP");
+        }
 
-        }        
+        //Reser Distance, get the new swipeDelta
 
+        if (startTouch != Vector2.zero && Input.GetMouseButton(0))
+        {
+            swipeDelta = (Vector2)Input.mousePosition - startTouch;
+        }
+
+    
+        float deltax = swipeDelta.x;
+        float deltay = swipeDelta.y;
         if (swipeDelta.magnitude > 125)
         {
             //Which direction?
             float x = swipeDelta.x;
             float y = swipeDelta.y;
-            if (controller.isGrounded)
+            if (groundedPlayer)
             {
                 if (Mathf.Abs(x) > Mathf.Abs(y))
                 {
                     if (x < 0)
                     {
                         swipeLeft = true;
-                        Debug.Log("left");
+                        if (value <= -1.28f)
+                        {
+                            value = -1.28f;
+                            return;
+                        }
+                        else
+                        {
+                            value -= 1.28f;
+
+                        }
+                        Reset();
                     }
                     else
                     {
                         swipeRight = true;
+                        if (value >= 4.72f)
+                        {
+                            value = 4.72f;
+                            return;
+                        }
+                        else
+                        {
+                            value += 4.72f;
+                        }
+                        Reset();
                     }
                 }
                 else
@@ -100,9 +118,9 @@ public class PlayerMovement : MonoBehaviour
                         swipeUp = true;
                     }
                 }
+
             }
 
-            Reset();
         }
     }
 
@@ -137,24 +155,18 @@ public class PlayerMovement : MonoBehaviour
 
         //controller.Move(direction * Time.deltaTime);
 
-        if (controller.isGrounded)
+        if (groundedPlayer)
         {
             direction.y = 1;
             if (swipeLeft)
             {
-                if (value == 4.72f)
-                {
-                    return;
-                }
-                value += 4.72f;
+                Debug.Log("GOINGRIGHT");
+                
             }
             if (swipeRight)
             {
-                if (value == -1.28f)
-                {
-                    return;
-                }
-                value -= 1.28f;
+                Debug.Log("GOINGLEFT");
+                
             }
             if (swipeUp)
             {
@@ -181,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
         {
             direction.y += Mathf.Sqrt(jumpForce * -3.0f * Gravity);
             groundedPlayer = false;
+            Reset();
         }
     }
 
@@ -194,7 +207,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Reset()
     {
+        Debug.Log("REEEEEEE");
         startTouch = swipeDelta = Vector2.zero;
+        swipeUp = swipeRight = swipeLeft = swipeDown = false;
         isDraging = false;
     }
 
