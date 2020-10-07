@@ -18,7 +18,7 @@ public class ScoreSystem : MonoBehaviour
     {
         scoreAmount = 0f;
         pointIncreasedPerSec = 10f;
-        distances = 10;
+        distances = 100;
         distanceindent = 1;
     }
 
