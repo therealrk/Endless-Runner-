@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    #region References
     public GameManager GM;
     private CharacterController controller;
+    public PlayerData Data;
+    public ScoreSystem scoreSystem;
+    #endregion
     private Vector3 direction;
     //will be replace the get key to touch
     public float forwardSpeed;
@@ -19,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDraging = false;
     [SerializeField] private bool groundedPlayer = false;
     public GameObject Player;
-    public PlayerData Data;
+    
 
     void Start()
     {
@@ -215,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
             Data.totalCoin += 1;
+            scoreSystem.scoreAmount += 20;
         }
     }
 
