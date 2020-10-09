@@ -37,10 +37,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 0;
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
         Player.GetComponent<PlayerData>().GM = this;
+        PD.GetReference();
         //GameObject Holster = GameObject.FindGameObjectWithTag("Gun");
         //foreach (GameObject gun in Holster.transform)
         //{
@@ -210,7 +212,15 @@ public class GameManager : MonoBehaviour
 
     public void CountdownStartGame()
     {
-
+        int Countdown = 3;
+        if (Countdown >= 0)
+        {
+            Countdown -= 1;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     //UI functions

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDraging = false;
     [SerializeField] private bool groundedPlayer = false;
     public GameObject Player;
+    public PlayerData Data;
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         forwardSpeed = 5f;
         jumpForce = 10f;
         value = 0f;
-        
+        Data = GM.PD;
     }
 
     private void Update()
@@ -209,6 +210,11 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             groundedPlayer = true;
+        }
+        if (collision.gameObject.tag == "Coin")
+        {
+            Destroy(collision.gameObject);
+            Data.totalCoin += 1;
         }
     }
 
