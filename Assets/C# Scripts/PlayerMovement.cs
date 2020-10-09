@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<PlayerUI>().PMT = this;
         forwardSpeed = 5f;
         jumpForce = 10f;
-        value = 1.72f;
+        value = 0f;
         
     }
 
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         //transform.position = new Vector3(value, transform.position.y, transform.position.z);
 
         controller.Move(direction * Time.deltaTime);
-
+        groundedPlayer = controller.isGrounded;
         if (Input.GetMouseButtonDown(0))
         {
             startTouch = Input.mousePosition;
@@ -59,11 +59,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Reser Distance, get the new swipeDelta
-
-        if (startTouch != Vector2.zero && Input.GetMouseButton(0))
+        if (Input.GetMouseButtonUp(0))
         {
-            swipeDelta = (Vector2)Input.mousePosition - startTouch;
+            endTouch = Input.mousePosition;
+            swipeDelta = endTouch - startTouch;
         }
+        //if (startTouch != Vector2.zero && Input.GetMouseButton(0))
+        //{
+        //    swipeDelta = (Vector2)Input.mousePosition - startTouch;
+        //}
 
     
         float deltax = swipeDelta.x;
@@ -80,29 +84,30 @@ public class PlayerMovement : MonoBehaviour
                     if (x < 0)
                     {
                         swipeLeft = true;
-                        if (value <= -1.28f)
+                        if (value <= -3f)
                         {
-                            value = -1.28f;
+                            value = -3f;
                             return;
                         }
                         else
                         {
-                            value -= 1.28f;
+                            value -= 3f;
 
                         }
                         Reset();
+
                     }
                     else
                     {
                         swipeRight = true;
-                        if (value >= 4.72f)
+                        if (value >= 3f)
                         {
-                            value = 4.72f;
+                            value = 3f;
                             return;
                         }
                         else
                         {
-                            value += 4.72f;
+                            value += 3f;
                         }
                         Reset();
                     }
@@ -162,11 +167,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 Debug.Log("GOINGRIGHT");
                 
+
             }
             if (swipeRight)
             {
                 Debug.Log("GOINGLEFT");
                 
+
             }
             if (swipeUp)
             {
