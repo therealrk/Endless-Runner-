@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     public PlayerData Data;
     public ScoreSystem scoreSystem;
+    public BigMonster Monster;
     #endregion
     private Vector3 direction;
     //will be replace the get key to touch
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     private float playerSpeed =2f;
     public float Gravity = -9.18f;
-    [Range(-1.28f, 4.72f)] public float value;
+    [Range(-3f, 3f)] public float value;
     private Vector2 startTouch,endTouch, swipeDelta;
     public static bool tap, swipeLeft, swipeRight, swipeUp, swipeDown;
     private bool isDraging = false;
@@ -29,8 +30,10 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();        
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        Monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<BigMonster>();
         GM.playerMovement = this;
         gameObject.GetComponent<PlayerUI>().PMT = this;
+        Monster.playerMovement = this;
         forwardSpeed = 5f;
         jumpForce = 10f;
         value = 0f;
@@ -40,24 +43,11 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //transform.position = new Vector3(value, transform.position.y, transform.position.z);
-
         controller.Move(direction * Time.deltaTime);
         groundedPlayer = controller.isGrounded;
         if (Input.GetMouseButtonDown(0))
         {
-            startTouch = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit = new RaycastHit();
-            if (Input.GetMouseButton(0))
-            {
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.transform.gameObject.tag == "Enemy")
-                    {
-                        Destroy(hit.transform.gameObject);
-                    }
-                }
-            }
+            startTouch = Input.mousePosition;            
             tap = true;
             isDraging = true;
             Debug.Log("TAP");
@@ -69,12 +59,12 @@ public class PlayerMovement : MonoBehaviour
             endTouch = Input.mousePosition;
             swipeDelta = endTouch - startTouch;
         }
-        //if (startTouch != Vector2.zero && Input.GetMouseButton(0))
-        //{
-        //    swipeDelta = (Vector2)Input.mousePosition - startTouch;
-        //}
+        if (startTouch == Vector2.zero && Input.GetMouseButtonUp(0))
+        {
+            Fire();
+        }
 
-    
+
         float deltax = swipeDelta.x;
         float deltay = swipeDelta.y;
         if (swipeDelta.magnitude > 125)
@@ -141,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         direction.z = forwardSpeed;
         direction.y += Gravity * Time.deltaTime;
 
-
+        
 
         //groundedPlayer = controller.isGrounded;
         //if (groundedPlayer && direction.y < 0)
@@ -231,4 +221,19 @@ public class PlayerMovement : MonoBehaviour
         isDraging = false;
     }
 
+    private void Fire()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit = new RaycastHit();
+        if (Input.GetMouseButton(0))
+        {
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.gameObject.tag == "Enemy")
+                {
+                    Destroy(hit.transform.gameObject);
+                }
+            }
+        }
+    }
 }
