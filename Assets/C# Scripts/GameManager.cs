@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public string touchobject;
     public enum GamePhase { Mainmenu,InGame, GameOver}
     public GamePhase gamePhase;
-    public PlayerMachanic PM;
     public GameObject losePanel;
     public GameObject ingamePanel;
 
