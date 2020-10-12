@@ -1376,9 +1376,10 @@ GameObject:
   - component: {fileID: 2966104599685769118}
   - component: {fileID: 2966104599685769117}
   - component: {fileID: 2966104599685769116}
-  - component: {fileID: 2966104599685769090}
   - component: {fileID: 919132149099591645}
   - component: {fileID: 919132149099591641}
+  - component: {fileID: 7568582992252170668}
+  - component: {fileID: 919132149099591642}
   m_Layer: 0
   m_Name: Tester
   m_TagString: Player
@@ -1473,18 +1474,6 @@ MonoBehaviour:
   enemyObj: {fileID: 0}
   GameOver: 0
   PMT: {fileID: 0}
---- !u!114 &2966104599685769090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2731663774869166795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5975cab6ca3a80a4387fd0e72e9c02ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &919132149099591645
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1518,6 +1507,44 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7568582992252170668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731663774869166795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f889d71140c11c04a8f84389012e1bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
+  Data: {fileID: 919132149099591642}
+  scoreSystem: {fileID: 0}
+  Monster: {fileID: 0}
+  forwardSpeed: 0
+  jumpForce: 0
+  Gravity: -9.18
+  value: -1.87
+  groundedPlayer: 0
+  Player: {fileID: 2731663774869166795}
+--- !u!114 &919132149099591642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2731663774869166795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56871488cdfdee143a318144e9decf86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 0}
+  totalCoin: 0
+  currGun: {fileID: 0}
+  PM: {fileID: 7568582992252170668}
 --- !u!1 &2752101060041045560
 GameObject:
   m_ObjectHideFlags: 0

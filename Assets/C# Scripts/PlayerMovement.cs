@@ -205,9 +205,14 @@ public class PlayerMovement : MonoBehaviour
         {
             groundedPlayer = true;
         }
-        if (collision.gameObject.tag == "Coin")
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Coin")
         {
-            Destroy(collision.gameObject);
+            Destroy(other.gameObject);
             Data.totalCoin += 1;
             scoreSystem.scoreAmount += 20;
         }
