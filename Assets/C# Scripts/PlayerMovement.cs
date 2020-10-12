@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        controller = gameObject.GetComponent<CharacterController>();        
+        controller = gameObject.GetComponent<CharacterController>();
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         //Monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<BigMonster>();
         GM.playerMovement = this;
@@ -42,12 +42,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //transform.position = new Vector3(value, transform.position.y, transform.position.z);
+        transform.position = new Vector3(value, transform.position.y, transform.position.z);
         controller.Move(direction * Time.deltaTime);
         groundedPlayer = controller.isGrounded;
         if (Input.GetMouseButtonDown(0))
         {
-            startTouch = Input.mousePosition;            
+            startTouch = Input.mousePosition;
             tap = true;
             isDraging = true;
             Debug.Log("TAP");
@@ -126,8 +126,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = new Vector3(value, transform.position.y, transform.position.z);
-        Vector3 targetPosition = transform.position.z * transform.forward + transform.position.y * transform.up;
         direction.z = forwardSpeed;
         direction.y += Gravity * Time.deltaTime;
 
@@ -199,14 +197,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            groundedPlayer = true;
-        }
-
-    }
 
     private void OnTriggerEnter(Collider other)
     {
