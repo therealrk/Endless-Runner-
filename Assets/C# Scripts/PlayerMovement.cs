@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             startTouch = Input.mousePosition;
             tap = true;
             isDraging = true;
-            Debug.Log("TAP");
+
         }
 
         //Reser Distance, get the new swipeDelta
@@ -126,6 +126,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        transform.position = new Vector3(value, transform.position.y, transform.position.z);
+
         direction.z = forwardSpeed;
         direction.y += Gravity * Time.deltaTime;
 
@@ -202,15 +204,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.tag == "Coin")
         {
-            Destroy(other.gameObject);
             Data.totalCoin += 1;
             scoreSystem.scoreAmount += 20;
+            Destroy(other.gameObject);
         }
     }
 
     private void Reset()
     {
-        Debug.Log("REEEEEEE");
         startTouch = swipeDelta = Vector2.zero;
         swipeUp = swipeRight = swipeLeft = swipeDown = false;
         isDraging = false;

@@ -1110,7 +1110,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 8cf49b0884963d74ab0b4b3c3786440e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   forwardSpeed: 0
   jumpForce: 0
   Gravity: -9.18
-  value: 0
+  value: -3
   groundedPlayer: 0
   Player: {fileID: 5359450012134727000}
 --- !u!1 &5421676749484613067

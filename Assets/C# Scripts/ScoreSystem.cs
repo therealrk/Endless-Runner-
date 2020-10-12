@@ -16,6 +16,8 @@ public class ScoreSystem : MonoBehaviour
 
     void Start()
     {
+        GameObject Player = GameObject.FindGameObjectWithTag("Player");
+        Player.GetComponent<PlayerMovement>().scoreSystem = this;
         scoreAmount = 0f;
         pointIncreasedPerSec = 10f;
         distances = 100;
