@@ -8,6 +8,7 @@ TagManager:
   - Transport
   - Ground
   - Coin
+  - Monster
   layers:
   - Default
   - TransparentFX
