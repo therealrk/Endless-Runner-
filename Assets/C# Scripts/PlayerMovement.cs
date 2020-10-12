@@ -30,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = gameObject.GetComponent<CharacterController>();        
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-        Monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<BigMonster>();
+        //Monster = GameObject.FindGameObjectWithTag("Monster").GetComponent<BigMonster>();
         GM.playerMovement = this;
         gameObject.GetComponent<PlayerUI>().PMT = this;
-        Monster.playerMovement = this;
+        //Monster.playerMovement = this;
         forwardSpeed = 5f;
         jumpForce = 10f;
         value = 0f;
