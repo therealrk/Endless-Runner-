@@ -18,6 +18,7 @@ public class PlayerUI : MonoBehaviour
     {
         GM = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         GM.playerUI = this;
+        GameObject.Find("ScoreSystem").GetComponent<ScoreSystem>().PUI = this;
     }
 
     // Update is called once per frame
