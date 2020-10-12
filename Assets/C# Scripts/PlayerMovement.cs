@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDraging = false;
     [SerializeField] private bool groundedPlayer = false;
     public GameObject Player;
-    
+    public bool power;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<PlayerUI>().PMT = this;
         //Monster.playerMovement = this;
         forwardSpeed = 5f;
-        jumpForce = 10f;
+        jumpForce = 6f;
         value = 0f;
         Data = GM.PD;
     }
@@ -231,5 +231,10 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void POWAR()
+    {
+        
     }
 }

@@ -31,12 +31,14 @@ public class GameManager : MonoBehaviour
     public Image HealthBar; 
     private float health;
     public float startHealth = 3;
+    private int Countdown;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 1;
+        Time.timeScale = 0;
+        Countdown = 3;
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         GameOver();
-
+        CountdownStartGame();
 
         HealthBar.fillAmount = health / startHealth;
         //test hp
@@ -212,7 +214,6 @@ public class GameManager : MonoBehaviour
 
     public void CountdownStartGame()
     {
-        int Countdown = 3;
         if (Countdown >= 0)
         {
             Countdown -= 1;

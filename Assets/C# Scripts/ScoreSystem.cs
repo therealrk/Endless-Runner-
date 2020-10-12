@@ -20,7 +20,7 @@ public class ScoreSystem : MonoBehaviour
         Player.GetComponent<PlayerMovement>().scoreSystem = this;
         scoreAmount = 0f;
         pointIncreasedPerSec = 10f;
-        distances = 100;
+        distances = 1000;
         distanceindent = 1;
     }
 
