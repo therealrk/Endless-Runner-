@@ -50,10 +50,10 @@ public class TileManager : MonoBehaviour
         }
         if (scoreSystem.distance <= 3 * scoreSystem.distanceindent * scoreSystem.distances&& scoreSystem.distance >= 2 * scoreSystem.distanceindent * scoreSystem.distances)
         {
-            GameObject go_02 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
-            activeTiles.Add(go_02);
+            GameObject go_03 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
+            activeTiles.Add(go_03);
             zSpawn += tileLength;
-            Debug.Log("ChinaPrefab");
+            Debug.Log("3Prefab");
         }
 
     }

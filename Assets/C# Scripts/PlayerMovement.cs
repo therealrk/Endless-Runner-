@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         GM.playerMovement = this;
         gameObject.GetComponent<PlayerUI>().PMT = this;
         //Monster.playerMovement = this;
-        forwardSpeed = 5f;
+        forwardSpeed = 8f;
         jumpForce = 6f;
         value = 0f;
         Data = GM.PD;

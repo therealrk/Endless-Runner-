@@ -20,7 +20,7 @@ public class ScoreSystem : MonoBehaviour
         Player.GetComponent<PlayerMovement>().scoreSystem = this;
         scoreAmount = 0f;
         pointIncreasedPerSec = 10f;
-        distances = 1000;
+        distances = 100;
         distanceindent = 1;
     }
 
@@ -31,7 +31,7 @@ public class ScoreSystem : MonoBehaviour
             scoreCurrent.text = (int)scoreAmount + "P";
             scoreAmount += pointIncreasedPerSec * Time.deltaTime;
             distance += pointIncreasedPerSec / 100;
-            if(distance>= 4 * distanceindent * distances)
+            if(distance>= 3 * distanceindent * distances)
             {
                 distanceindent += 1;
             }
