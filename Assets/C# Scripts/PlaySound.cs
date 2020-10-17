@@ -6,6 +6,7 @@ public class PlaySound : MonoBehaviour
 {
     public AudioSource sound_click;
     public AudioSource sound_confirm;
+    public AudioSource sound_BGM;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class PlaySound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void playClickSound()
@@ -27,5 +28,11 @@ public class PlaySound : MonoBehaviour
     public void playConfirmSound()
     {
         sound_confirm.Play();
+    }
+
+    public void playBGM()
+    {
+        sound_BGM.Play();
+
     }
 }

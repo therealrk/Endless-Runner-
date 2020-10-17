@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
         //    Guns.Add(gun);
         //}
 
-
         health = startHealth;
         HealthBar.fillAmount = health / startHealth;
     }
@@ -84,6 +83,7 @@ public class GameManager : MonoBehaviour
                 losePanel.SetActive(true);
                 gamePhase = GamePhase.GameOver;
                 Debug.Log("GameOver!");
+                
             }
         }        
     }
@@ -273,6 +273,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync("MainMenu");
     }
-
 
 }
