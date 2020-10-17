@@ -31,9 +31,9 @@ public class ScoreSystem : MonoBehaviour
             scoreCurrent.text = (int)scoreAmount + "P";
             scoreAmount += pointIncreasedPerSec * Time.deltaTime;
             distance += pointIncreasedPerSec / 100;
-            if(distance>= 3 * distanceindent * distances)
+            if(distance>= (2 + distanceindent) * distances)
             {
-                distanceindent += 1;
+                distanceindent += 3;
             }
         }
         if (PUI.GameOver == true)
