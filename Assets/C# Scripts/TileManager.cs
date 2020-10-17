@@ -6,6 +6,7 @@ public class TileManager : MonoBehaviour
 {
     public GameObject[] tilePrefabs;
     public GameObject[] secondTilePrefabs;
+    public GameObject[] thirdTilePrefabs;
     public float zSpawn = 0;
     public float tileLength = 30;
     public int numberOfTiles = 3;
@@ -50,10 +51,10 @@ public class TileManager : MonoBehaviour
         }
         if (scoreSystem.distance <= 3 * scoreSystem.distanceindent * scoreSystem.distances&& scoreSystem.distance >= 2 * scoreSystem.distanceindent * scoreSystem.distances)
         {
-            GameObject go_03 = Instantiate(secondTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
+            GameObject go_03 = Instantiate(thirdTilePrefabs[tileIndex], transform.forward * zSpawn, transform.rotation);
             activeTiles.Add(go_03);
             zSpawn += tileLength;
-            Debug.Log("3Prefab");
+            Debug.Log("TrainStation");
         }
 
     }
