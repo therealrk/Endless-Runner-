@@ -31,14 +31,14 @@ public class GameManager : MonoBehaviour
     public Image HealthBar; 
     private float health;
     public float startHealth = 3;
-    private int Countdown;
+    private float Countdown;
+    public GameObject CDTimer;
 
 
     // Start is called before the first frame update
     void Start()
-    {
-        Time.timeScale = 0;
-        Countdown = 3;
+    {        
+        Countdown = 3f;
         Player = GameObject.FindGameObjectWithTag("Player");
         Player.GetComponent<PlayerMovement>().GM = this;
         Player.GetComponent<PlayerUI>().GM = this;
@@ -214,13 +214,15 @@ public class GameManager : MonoBehaviour
 
     public void CountdownStartGame()
     {
+        CDTimer.GetComponent<Text>().text = (((int)Countdown).ToString());
         if (Countdown >= 0)
         {
-            Countdown -= 1;
+            Countdown -= Time.deltaTime;
         }
         else
         {
-            Time.timeScale = 1;
+            CDTimer.SetActive(false);
+            Player.GetComponent<PlayerMovement>().enabled= true;
         }
     }
 
@@ -237,7 +239,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        //When lose the game player can press restart button to restart the game 
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
 
