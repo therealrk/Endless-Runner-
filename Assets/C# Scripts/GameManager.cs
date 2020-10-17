@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public GamePhase gamePhase;
     public GameObject losePanel;
     public GameObject ingamePanel;
+    public GameObject pausePanel;
+    public bool pauseGame = false;
 
     //UI stuffs
     public Image HealthBar; 
@@ -243,6 +245,34 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
+    public void PauseGame()
+    {
+        if (pauseGame == false)
+        {
+            Time.timeScale = 0;
+            ingamePanel.SetActive(false);
+            pausePanel.SetActive(true);
+            pauseGame = true;
+        }
+
+
+    }
+
+    public void ResumeGame()
+    {
+        if (pauseGame == true)
+        {
+            Time.timeScale = 1;
+            ingamePanel.SetActive(true);
+            pausePanel.SetActive(false);
+            pauseGame = false;
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadSceneAsync("MainMenu");
+    }
 
 
 }
