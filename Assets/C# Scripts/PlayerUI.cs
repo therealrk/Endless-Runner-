@@ -50,15 +50,5 @@ public class PlayerUI : MonoBehaviour
             Debug.Log("Hit By Transportation!");
             Debug.Log(GameOver);
         }
-        if (hit.gameObject.tag == "EnemyWeapon")
-        {
-            Health -= 1;
-            Debug.Log("Hit by Enemy weapon");
-            Debug.Log("Player Health was deduct");
-        }
-        if(hit.gameObject.tag == "Money")
-        {
-
-        }
     }
 }
